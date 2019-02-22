@@ -25,5 +25,5 @@ public interface UserRepo {
     int batchInsert(@Param(value="userLists")List<User> testLists);
 
     @InsertProvider(type = SqlProvider.class,method = "prepareData")
-    int prepareData(int num,User user);
+    int prepareData(@Param(value="users")List<User> users);
 }
