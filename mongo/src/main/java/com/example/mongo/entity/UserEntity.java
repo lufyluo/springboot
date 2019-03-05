@@ -1,26 +1,35 @@
 package com.example.mongo.entity;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
 import java.io.Serializable;
+import java.util.UUID;
 
+@Document(collection = "database_user")
 public class UserEntity implements Serializable {
-    private static final long serialVersionUID = -3258839839160856613L;
-    private Long id;
+//    private static final long serialVersionUID = -3258839839160856613L;
+//    @Transient
+//    public static final String SEQUENCE_NAME = "users_sequence";
+    @Id
+    private String id;
+    @Field
     private String userName;
+    @Field
     private String passWord;
-
+    public UserEntity(){}
     public UserEntity(String userName,String passWord){
         this.userName = userName;
         this.passWord = passWord;
     }
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

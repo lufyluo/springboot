@@ -6,12 +6,14 @@ import com.mongodb.MongoClientURI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.data.mongodb.MongoTransactionManager;
 import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
 import org.springframework.data.mongodb.core.convert.MongoConverter;
 import org.springframework.data.mongodb.gridfs.GridFsTemplate;
 
+@Configuration
 public class MongoConfig extends AbstractMongoConfiguration {
     @Value("${spring.data.mongodb.uri}")
     private String mongoUri;
@@ -38,6 +40,7 @@ public class MongoConfig extends AbstractMongoConfiguration {
     @Override
     protected String getDatabaseName() {
         String dataBase = mongoUri.substring(mongoUri.lastIndexOf("/") + 1);
+        System.out.println(dataBase);
         return dataBase;
     }
 }
