@@ -19,6 +19,8 @@ public class UserEntity implements Serializable {
     private String userName;
     @Field
     private String passWord;
+    @Field
+    private String lastName;
     public UserEntity(){}
     public UserEntity(String userName,String passWord){
         this.userName = userName;
@@ -47,5 +49,13 @@ public class UserEntity implements Serializable {
 
     public void setPassWord(String passWord) {
         this.passWord = passWord;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }

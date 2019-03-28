@@ -15,18 +15,18 @@ import org.springframework.data.mongodb.gridfs.GridFsTemplate;
 
 @Configuration
 public class MongoConfig extends AbstractMongoConfiguration {
-    @Value("${spring.data.mongodb.uri}")
+    @Value("${spring.data.mongodbQ.uri}")
     private String mongoUri;
     @Autowired
     private MongoConverter mongoConverter;
 
-    @Bean
+    //@Bean
     GridFsTemplate gridFsTemplate(MongoDbFactory dbFactory) {
 
         return new GridFsTemplate(dbFactory, mongoConverter);
     }
 
-    @Bean
+    //@Bean
     MongoTransactionManager transactionManager(MongoDbFactory dbFactory) {
         return new MongoTransactionManager(dbFactory);
     }
