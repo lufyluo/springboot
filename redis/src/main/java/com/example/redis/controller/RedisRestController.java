@@ -1,9 +1,8 @@
 package com.example.redis.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.redis.infrastructure.redis.RedisUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Desc : .....
@@ -11,9 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
  * @Date : 2019/4/10 11:30
  */
 @RestController
+@RequestMapping("/redis")
 public class RedisRestController {
+    @Autowired
+    RedisUtil redisUtil;
     @RequestMapping(value = "get",method = RequestMethod.GET)
     public String get(@RequestParam String key){
-        return null;
+        return redisUtil.get(key);
+    }
+    @RequestMapping(value = "set/{key}/{value}",method = RequestMethod.GET)
+    public String set(@PathVariable String key, @PathVariable  String value){
+        return redisUtil.set(key,value);
     }
 }
