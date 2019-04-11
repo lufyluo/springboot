@@ -33,4 +33,9 @@ public class MessageServiceImpl {
         System.out.println("消息发送时间:"+sdf.format(new Date()));
         rabbitTemplate.convertAndSend("test_exchange", queueName, msg);
     }
+    public void sendQueueMsg(String queueName,String msg) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        System.out.println("消息发送时间:"+sdf.format(new Date()));
+        rabbitTemplate.convertAndSend(queueName, msg);
+    }
 }

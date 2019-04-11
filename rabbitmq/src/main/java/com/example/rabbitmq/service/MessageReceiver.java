@@ -17,7 +17,19 @@ public class MessageReceiver {
     @RabbitListener(queues = "test_queue_1")
     public void receive(String msg) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        System.out.println("消息接收时间:"+sdf.format(new Date()));
-        System.out.println("接收到的消息:"+msg);
+        System.out.println("receive消息接收时间:"+sdf.format(new Date()));
+        System.out.println("receive接收到的消息:"+msg);
+    }
+    @RabbitListener(queues = "test_queue_1")
+    public void receive1(String msg) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        System.out.println("receive1消息接收时间:"+sdf.format(new Date()));
+        System.out.println("receive1接收到的消息:"+msg);
+    }
+    @RabbitListener(queues = "test_queue_1")
+    public void receive2(String msg) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        System.out.println("receive2消息接收时间:"+sdf.format(new Date()));
+        System.out.println("receive2接收到的消息:"+msg);
     }
 }
