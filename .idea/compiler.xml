@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="aop" />
+        <module name="elk" />
         <module name="mongo" />
         <module name="mybatis" />
         <module name="rabbitmq" />
@@ -16,6 +17,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="aop" target="1.8" />
+      <module name="elk" target="1.8" />
       <module name="mongo" target="1.8" />
       <module name="mybatis" target="1.8" />
       <module name="rabbitmq" target="1.8" />
@@ -26,6 +28,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="aop" options="-parameters" />
+      <module name="elk" options="-parameters" />
       <module name="mongo" options="-parameters" />
       <module name="mybatis" options="-parameters" />
       <module name="rabbitmq" options="-parameters" />
