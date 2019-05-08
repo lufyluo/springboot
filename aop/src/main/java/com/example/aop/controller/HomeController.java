@@ -1,12 +1,11 @@
 package com.example.aop.controller;
 
+import com.example.aop.bean.PojoUser;
+import com.example.aop.bean.UserInfo;
 import com.example.aop.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/home")
@@ -21,4 +20,14 @@ public class HomeController {
     public int getInt2(@RequestParam int id) {
         return userService.getInt2(id);
     }
+    @PostMapping("/getPojo")
+    public PojoUser getPojo(@RequestBody UserInfo userInfo){
+        return userService.toPojoUser(userInfo);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public int delete(@PathVariable int id){
+        return id;
+    }
+
 }
