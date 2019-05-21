@@ -12,7 +12,7 @@ import java.util.List;
 @Mapper
 public interface UserRepo {
     //@Insert("insert into user (name, createTime) values (#{name,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})")
-    @Insert("insert into user (name, createTime) values (#name, #createTime)")
+    //@Insert("insert into user (name,sex, createTime) values (#{name},#{sex},#{createTime})")
     int insert(User user);
 
     @Insert({

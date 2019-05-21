@@ -18,15 +18,19 @@ public class ArrayTest {
         Object aa ="aa";
         Object bb ="bb";
         Object cc ="bb";
+        Object in = 1;
         //List转Set
         Set<String> set = new HashSet<>();
         set.add(aa.toString());
         set.add(bb.toString());
         set.add(cc.toString());
         System.out.println("set: " + set);
+        System.out.println((1+"").equals(in+""));
 //Set转List
         List<String> list_1 = new ArrayList<>(set);
         System.out.println("list_1: " + list_1);
+        System.out.println(null+"");
+        list_1.contains(aa);
     }
     @Test
     public void listTest(){
@@ -39,8 +43,8 @@ public class ArrayTest {
     @Test
     public void listContainsTest(){
         List<String> arr = new ArrayList<>();
-        arr.add("aaa");
-        Object obj = "aaa";
-        System.out.println(arr.contains(obj));
+        arr.add("11111");
+        Object obj = 11111;
+        System.out.println(arr.contains(obj+""));
     }
 }

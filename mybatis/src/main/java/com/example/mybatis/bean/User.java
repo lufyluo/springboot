@@ -9,6 +9,8 @@ public class User {
 
     private Date createTime;
 
+    private SexEnum sex;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -34,6 +36,15 @@ public class User {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+
+    public SexEnum getSex() {
+        return sex;
+    }
+
+    public void setSex(SexEnum sex) {
+        this.sex = sex;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
