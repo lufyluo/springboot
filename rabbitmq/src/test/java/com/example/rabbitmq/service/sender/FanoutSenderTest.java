@@ -16,6 +16,8 @@ public class FanoutSenderTest {
 
     @Test
     public void send() {
-        fanoutSender.send("hello");
+        for(int i =0;i<1;i++){
+            fanoutSender.send("hello");
+        }
     }
 }

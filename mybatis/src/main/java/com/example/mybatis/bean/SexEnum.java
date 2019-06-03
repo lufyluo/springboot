@@ -1,7 +1,7 @@
 package com.example.mybatis.bean;
 
 public enum SexEnum implements BaseEnum{
-    MAN(1, "男"), WOMAN(2, "女");
+    MAN(0, "男"), WOMAN(1, "女");
 
     private int key;
     private String value;
@@ -48,5 +48,9 @@ public enum SexEnum implements BaseEnum{
 
     public void setValue(String value) {
         this.value = value;
+    }
+    @Override
+    public String toString(){
+        return this.key+"";
     }
 }

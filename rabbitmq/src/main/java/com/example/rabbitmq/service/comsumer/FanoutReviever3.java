@@ -4,14 +4,16 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
 
 /**
- * @Desc : .....
- * @Author : lufy
- * @Date : 2019/4/12 15:48
+ * .....
+ *
+ * @author : lufy
+ * @version v1.0
+ * @date : 2019/5/27
  */
 @Service
-public class FanoutReciever2 extends BaseFanoutReciever {
-    @RabbitListener(queues = "${spring.rabbitmq.fanoutQueue2}")
+public class FanoutReviever3  extends BaseFanoutReciever{
+    @RabbitListener(queues = "${spring.rabbitmq.fanoutQueue1}")
     public void recievedMessage(String spittle) throws InterruptedException {
-        super.fanoutHanlder(spittle,"FanoutReciever2");
+        super.fanoutHanlder(spittle,"FanoutReciever3");
     }
 }

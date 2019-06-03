@@ -5,6 +5,7 @@ import com.example.aop.bean.UserInfo;
 import com.example.aop.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -21,8 +22,10 @@ public class HomeController {
         return userService.getInt2(id);
     }
     @PostMapping("/getPojo")
-    public PojoUser getPojo(@RequestBody UserInfo userInfo){
-        return userService.toPojoUser(userInfo);
+    public PojoUser getPojo(@RequestBody @Validated UserInfo userInfo){
+
+        return null;
+       // return userService.toPojoUser(userInfo);
     }
 
     @DeleteMapping("/delete/{id}")

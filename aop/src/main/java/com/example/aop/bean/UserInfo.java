@@ -1,5 +1,6 @@
 package com.example.aop.bean;
 
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 /**
@@ -8,6 +9,7 @@ import java.util.Date;
  * @Date : 2019/4/23 15:34
  */
 public class UserInfo {
+    @NotBlank(message = "不能为空")
     private String name;
     private int age;
     private Address address;
