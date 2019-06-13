@@ -28,6 +28,11 @@ public class HomeController {
        // return userService.toPojoUser(userInfo);
     }
 
+    @GetMapping("/get/bool/{bool}")
+    public boolean getBool(@PathVariable int bool){
+        return userService.getBool(bool);
+    }
+
     @DeleteMapping("/delete/{id}")
     public int delete(@PathVariable int id){
         return id;

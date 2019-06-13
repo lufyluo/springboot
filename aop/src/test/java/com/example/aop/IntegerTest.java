@@ -16,7 +16,7 @@ public class IntegerTest {
     @Test
     public void NullIntTest() {
         Integer a = (Integer) obj;
-        if (a != null && a > 0) {
+        if (a > 0) {
             System.out.println("nice");
         } else {
             System.out.println("bad");

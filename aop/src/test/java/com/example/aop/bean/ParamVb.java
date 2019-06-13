@@ -1,6 +1,5 @@
 package com.example.aop.bean;
 
-import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 /**
@@ -8,13 +7,11 @@ import java.io.Serializable;
  *
  * @author : lufy
  * @version v1.0
- * @date : 2019/5/25
+ * @date : 2019/6/10
  */
-public class ParamV implements Serializable {
-    private static final long serialVersionUID = 8L;
-
-    @NotBlank(message = "瓜皮")
-    private transient String name = "lufy";
+public class ParamVb implements Serializable {
+    private static final long serialVersionUID = 4L;
+    private transient String name = "lufyVb";
 
     private String add="hello";
     public String getName() {

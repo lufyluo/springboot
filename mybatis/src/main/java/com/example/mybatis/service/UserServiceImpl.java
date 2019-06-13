@@ -5,6 +5,7 @@ import com.example.mybatis.dao.UserRepo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,9 +28,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional()
     public int add(User user) {
         user.setCreateTime(new Date());
-        return userRepo.insert(user);
+        System.out.println("id: " + user.getId());
+        int result = userRepo.insert(user);
+        System.out.println(user.getId());
+        return result;
     }
 
     @Override

@@ -1,15 +1,19 @@
 package com.example.aop.service;
 
-import com.example.aop.aop.InvokeException;
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.example.aop.aop.LogAnnotation;
 
 import com.example.aop.bean.PojoUser;
 import com.example.aop.bean.UserInfo;
 import com.example.aop.util.PojoMapper;
 import org.springframework.stereotype.Service;
+import service.bean.InvokeException;
 
 @Service
 public class UserServiceImpl implements UserService {
+    @Reference
+    private service.UserService userService;
+
     @LogAnnotation
     @Override
     public int getInt(int id) {
@@ -32,5 +36,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public PojoUser toPojoUser(UserInfo user) {
         return PojoMapper.INSTANCE.toPojoUser(user);
+    }
+
+    public boolean getBool(int channel){
+        return userService.getBool(channel);
     }
 }

@@ -2,6 +2,8 @@ package com.example.aop.aop;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import service.bean.InvokeCode;
+import service.bean.InvokeException;
 
 public class InvokeResult<T> {
 

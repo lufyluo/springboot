@@ -1,0 +1,15 @@
+server:
+  port: 8081
+spring:
+  dubbo:
+    application: test-consumer
+    registry:
+      address: zookeeper://192.168.18.128:2181
+    consumer:
+      retries: 0
+      client: netty4
+      port: -1
+      #      group: lufytest
+      version: 1.0.0
+      timeout: 10000
+      dispatcher: message

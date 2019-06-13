@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/aop/aop.iml" filepath="$PROJECT_DIR$/aop/aop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/consumer/consumer.iml" filepath="$PROJECT_DIR$/consumer/consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dubboservice/dubboservice.iml" filepath="$PROJECT_DIR$/dubboservice/dubboservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/elk/elk.iml" filepath="$PROJECT_DIR$/elk/elk.iml" />
       <module fileurl="file://$PROJECT_DIR$/mongo/mongo.iml" filepath="$PROJECT_DIR$/mongo/mongo.iml" />
       <module fileurl="file://$PROJECT_DIR$/mybatis/mybatis.iml" filepath="$PROJECT_DIR$/mybatis/mybatis.iml" />

@@ -11,6 +11,8 @@
         <option value="$PROJECT_DIR$/schedule/pom.xml" />
         <option value="$PROJECT_DIR$/elk/pom.xml" />
         <option value="$PROJECT_DIR$/provider/pom.xml" />
+        <option value="$PROJECT_DIR$/dubboservice/pom.xml" />
+        <option value="$PROJECT_DIR$/consumer/pom.xml" />
       </list>
     </option>
   </component>

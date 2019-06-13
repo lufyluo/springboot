@@ -1,4 +1,4 @@
-package com.example.aop.aop;
+package service.bean;
 
 public class InvokeCode {
     public static final int UnKnow = 0;

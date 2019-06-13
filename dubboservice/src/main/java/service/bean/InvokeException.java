@@ -1,4 +1,4 @@
-package com.example.aop.aop;
+package service.bean;
 
 public class InvokeException extends RuntimeException {
     private static final long serialVersionUID = -4742832112872227456L;

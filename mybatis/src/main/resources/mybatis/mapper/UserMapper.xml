@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mybatis.dao.UserRepo">
 
-   <insert id="insert" parameterType="com.example.mybatis.bean.User">
+   <insert id="insert" useGeneratedKeys="true" keyProperty="id"
+           parameterType="com.example.mybatis.bean.User">
        insert into user (name,sex, createTime) values (#{name},#{sex}, #{createTime})
    </insert>
 </mapper>

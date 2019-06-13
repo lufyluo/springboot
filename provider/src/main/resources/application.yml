@@ -1,0 +1,17 @@
+spring:
+  dubbo:
+    application: provider
+    registry:
+      address: zookeeper://192.168.18.128:2181
+      protocol: dubbo
+    annotation:
+      package: com.example.dubbo.provider.service
+    server: true
+    provider:
+      retries: 0
+      server: netty4
+      port: -1
+#      group: lufytest
+      version: 1.0.0
+      timeout: 10000
+      dispatcher: message
