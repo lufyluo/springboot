@@ -69,6 +69,10 @@
             <artifactId>netty-all</artifactId>
             <version>4.1.36.Final</version>
         </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

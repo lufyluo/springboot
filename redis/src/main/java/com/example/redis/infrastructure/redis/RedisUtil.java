@@ -249,7 +249,7 @@ public class RedisUtil {
     public Boolean exists(String key) {
         Jedis jedis = null;
         try {
-            jedis = jedisPool.getResource();
+            jedis = jedisPool.getResource() ;
             return jedis.exists(key);
         } catch (Exception e) {
 

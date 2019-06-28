@@ -13,6 +13,7 @@
         <option value="$PROJECT_DIR$/provider/pom.xml" />
         <option value="$PROJECT_DIR$/dubboservice/pom.xml" />
         <option value="$PROJECT_DIR$/consumer/pom.xml" />
+        <option value="$PROJECT_DIR$/redistemplate/pom.xml" />
       </list>
     </option>
   </component>

@@ -9,5 +9,7 @@ public interface UserService {
 
     int add(User user);
 
+    int addAndUpdate(User user);
+
     int add(List<User> users);
 }

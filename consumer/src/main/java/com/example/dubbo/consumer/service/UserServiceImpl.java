@@ -5,6 +5,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import service.UserService;
 
+import javax.servlet.ServletContext;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Vector;
+
 /**
  * .....
  *
@@ -19,6 +24,5 @@ public class UserServiceImpl implements UserPortalService{
     @Override
     public int get(){
         return userService.test();
-//        return 0;
     }
 }
