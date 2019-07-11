@@ -31,7 +31,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional()
     public int add(User user) {
         user.setCreateTime(new Date());
         System.out.println("id: " + user.getId());
@@ -39,9 +38,9 @@ public class UserServiceImpl implements UserService {
         System.out.println(user.getId());
         if (user.getId() > 0)
             throw new NullPointerException();
-        ReentrantLock
         return result;
     }
+
 
     @Override
     @Transactional

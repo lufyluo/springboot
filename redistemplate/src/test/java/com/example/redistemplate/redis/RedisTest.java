@@ -58,7 +58,6 @@ public class RedisTest {
     public void get() {
         Map<String,DataConf> map=redisTemplate.opsForHash().entries("maps");
         System.out.println(map.size());
-        ReentrantLock
     }
 
     @Test

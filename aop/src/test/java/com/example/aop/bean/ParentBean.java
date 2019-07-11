@@ -9,6 +9,17 @@ package com.example.aop.bean;
  */
 public class ParentBean {
     private String name;
+    private String priName = "hello";
+    private String nick;
+
+    public String getNick() {
+        return nick;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
 
     public String getName() {
         return name;
@@ -16,5 +27,9 @@ public class ParentBean {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPriName() {
+        return priName;
     }
 }

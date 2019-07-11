@@ -1,5 +1,9 @@
 package com.example.aop;
 
+import com.example.aop.bean.ParentBean;
+
+import java.util.concurrent.locks.ReentrantLock;
+
 /**
  * .....
  *
@@ -8,4 +12,8 @@ package com.example.aop;
  * @date : 2019/6/19
  */
 public class TreadExceptionTest {
+    private final static ParentBean parentBean= new ParentBean();
+
+    public void hunguryTest(){
+    }
 }
