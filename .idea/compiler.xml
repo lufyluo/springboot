@@ -17,6 +17,7 @@
         <module name="redis" />
         <module name="redistemplate" />
         <module name="schedule" />
+        <module name="sentinel" />
         <module name="thread" />
       </profile>
     </annotationProcessing>
@@ -32,6 +33,7 @@
       <module name="redis" target="1.8" />
       <module name="redistemplate" target="1.8" />
       <module name="schedule" target="1.8" />
+      <module name="sentinel" target="1.8" />
       <module name="thread" target="1.8" />
     </bytecodeTargetLevel>
   </component>
@@ -47,6 +49,7 @@
       <module name="redis" options="-parameters" />
       <module name="redistemplate" options="-parameters" />
       <module name="schedule" options="-parameters" />
+      <module name="sentinel" options="-parameters" />
       <module name="thread" options="-parameters" />
     </option>
   </component>
