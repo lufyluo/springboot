@@ -21,7 +21,7 @@ public class RedisSourceContext {
     }
 
     public static void removeDataSource() {
-        contextHolder.set(null);
+        //contextHolder.set(null);
         contextHolder.remove();
     }
 }
