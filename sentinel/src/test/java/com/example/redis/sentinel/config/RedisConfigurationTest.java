@@ -16,12 +16,12 @@ public class RedisConfigurationTest {
     private RedisTemplate redisTemplate;
     @Test
     public void testConect() {
-        String value = (String)redisTemplate.opsForValue().get("lufy");
+        String value = (String)redisTemplate.opsForValue().get("aTest");
         System.out.println(value);
     }
     @Test
     public void testSet() {
-        redisTemplate.opsForValue().set("test","lufy");
+        redisTemplate.opsForValue().set("aTest","lufy");
     }
 
 }

@@ -1,10 +1,17 @@
 package com.example.redis.sentinel.config;
 
 import com.example.redis.sentinel.core.JedisSentinelSlaveConnectionFactory;
+import com.example.redis.sentinel.core.RedisRouteConst;
+import com.example.redis.sentinel.core.RedisSourceContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisPassword;
 import org.springframework.data.redis.connection.RedisSentinelConfiguration;
@@ -21,17 +28,12 @@ public class RedisConfiguration {
     @Autowired
     private RedisTemplate redisTemplate;
 
-    @Bean
-    public RedisTemplate<String, Object> stringSerializerRedisTemplate() {
-        RedisSerializer<String> stringSerializer = new StringRedisSerializer();
-        redisTemplate.setKeySerializer(stringSerializer);
-        redisTemplate.setValueSerializer(stringSerializer);
-        redisTemplate.setHashKeySerializer(stringSerializer);
-        redisTemplate.setHashValueSerializer(stringSerializer);
-        return redisTemplate;
-    }
+    @Autowired
+    private ApplicationContext applicationContext;
 
-    @Bean
+    @Primary
+    @Bean(RedisRouteConst.WRITE)
+    @ConditionalOnClass({ RedisTemplate.class })
     public RedisConnectionFactory jedisConnectionFactory() {
         RedisSentinelConfiguration sentinelConfig = new RedisSentinelConfiguration()
                 .master("mymaster")
@@ -44,7 +46,8 @@ public class RedisConfiguration {
         return jedisConnectionFactory;
     }
 
-    @Bean("read")
+    @Bean(RedisRouteConst.READ)
+    @ConditionalOnClass({ RedisTemplate.class })
     public RedisConnectionFactory jedisReadConnectionFactory() {
         RedisSentinelConfiguration sentinelConfig = new RedisSentinelConfiguration()
                 .master("mymaster")
@@ -55,5 +58,26 @@ public class RedisConfiguration {
         JedisConnectionFactory jedisConnectionFactory = new JedisSentinelSlaveConnectionFactory(sentinelConfig);
         System.out.println(jedisConnectionFactory.getClientConfiguration().getClientName());
         return jedisConnectionFactory;
+    }
+
+    @Bean
+    public RedisTemplate<String, Object> stringSerializerRedisTemplate(@Autowired @Qualifier(RedisRouteConst.WRITE) RedisConnectionFactory connectionFactory) {
+        RedisSerializer<String> stringSerializer = new StringRedisSerializer();
+        redisTemplate.setKeySerializer(stringSerializer);
+        redisTemplate.setValueSerializer(stringSerializer);
+        redisTemplate.setHashKeySerializer(stringSerializer);
+        redisTemplate.setHashValueSerializer(stringSerializer);
+
+        String beanName = RedisSourceContext.getCurrentDataSource();
+        RedisConnectionFactory connectionFactory1 = (RedisConnectionFactory)applicationContext.getBean(beanName);
+        if(connectionFactory1!=null)
+        {
+            System.out.println("change source " +beanName + " thread id: " + Thread.currentThread().getId());
+            redisTemplate.setConnectionFactory(connectionFactory1);
+        }else {
+            redisTemplate.setConnectionFactory(connectionFactory);
+        }
+        System.out.println("init finish!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        return redisTemplate;
     }
 }

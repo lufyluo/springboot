@@ -1,5 +1,6 @@
 package com.example.thread.threadClasses;
 
+import com.example.thread.bean.MyThreadContext;
 import com.example.thread.bean.OladBean;
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class MyThreadPoolExecutor extends ThreadPoolExecutor {
     private final AtomicLong taskNums = new AtomicLong();
     private final AtomicLong totalTime = new AtomicLong();
 
-    public MyThreadPoolExecutor(int corePoolSize, int maximumPoolSize){
+    public MyThreadPoolExecutor(int corePoolSize, int maximumPoolSize) {
         super(corePoolSize, maximumPoolSize, 0, TimeUnit.SECONDS, new LinkedBlockingQueue<>());
     }
 
@@ -43,7 +44,7 @@ public class MyThreadPoolExecutor extends ThreadPoolExecutor {
     @Override
     protected void beforeExecute(Thread t, Runnable r) {
         super.beforeExecute(t, r);
-        String msg = String.format("beforeExecute thread %s start %s",t.getName(),t.getName());
+        String msg = String.format("beforeExecute thread %s start %s", t.getName(), t.getName());
         System.out.println(msg);
         startTime.set(System.nanoTime());
     }
@@ -53,22 +54,23 @@ public class MyThreadPoolExecutor extends ThreadPoolExecutor {
         super.afterExecute(r, t);
         Long endTime = System.nanoTime();
         Long taskTime = endTime - startTime.get();
-        String msg = String.format("afterExecute time %s taskNum %s total %s",taskTime,taskNums.addAndGet(1),totalTime.addAndGet(taskTime));
+        String msg = String.format("afterExecute time %s taskNum %s total %s", taskTime, taskNums.addAndGet(1), totalTime.addAndGet(taskTime));
         System.out.println(msg);
     }
 
     @Override
     protected void terminated() {
         super.terminated();
-        String msg = String.format("terminated  taskNum %s total %s",taskNums.get(),totalTime.get());
+        String msg = String.format("terminated  taskNum %s total %s", taskNums.get(), totalTime.get());
         System.out.println(msg);
     }
 
     public static void main(String[] args) throws InterruptedException {
-        ThreadPoolExecutor myThreadPoolExecutor = new MyThreadPoolExecutor(5,5,0,TimeUnit.SECONDS,new LinkedBlockingDeque<>());
+        MyThreadContext.setCurrentDataSource(Thread.currentThread().getId() + ":" + System.currentTimeMillis());
+        ThreadPoolExecutor myThreadPoolExecutor = new MyThreadPoolExecutor(5, 5, 0, TimeUnit.SECONDS, new LinkedBlockingDeque<>());
         CountDownLatch countDownLatch = new CountDownLatch(20);
         final int[] a = {0};
-        String sdas="";
+        String sdas = "";
         List<OladBean> list = new ArrayList<>();
         runThread(myThreadPoolExecutor, countDownLatch);
 //        while (((MyThreadPoolExecutor) myThreadPoolExecutor).taskNums.get()<20){
@@ -84,26 +86,26 @@ public class MyThreadPoolExecutor extends ThreadPoolExecutor {
 //        }
         //Thread.sleep(5000);
         //myThreadPoolExecutor.shutdown();
-        myThreadPoolExecutor.awaitTermination(3,TimeUnit.SECONDS);
+        myThreadPoolExecutor.awaitTermination(3, TimeUnit.SECONDS);
         System.out.println("=============" + myThreadPoolExecutor.getActiveCount());
 
-        runThread(myThreadPoolExecutor, countDownLatch);
+        //runThread(myThreadPoolExecutor, countDownLatch);
 
 
     }
 
     private static void runThread(ThreadPoolExecutor myThreadPoolExecutor, CountDownLatch countDownLatch) {
-        if(myThreadPoolExecutor.isTerminated())
-        {
+        if (myThreadPoolExecutor.isTerminated()) {
             System.out.println("no no no");
             return;
         }
-        for (int i =0;i<20;i++){
+        for (int i = 0; i < 20; i++) {
             myThreadPoolExecutor.execute(new Runnable() {
                 @Override
                 public void run() {
-                    String msg = String.format("thread %s",Thread.currentThread().getId());
-
+                    String msg = String.format("thread %s", Thread.currentThread().getId() + "  || " + MyThreadContext.getCurrentDataSource());
+                    if (Thread.currentThread().getId() % 2 == 0)
+                        MyThreadContext.setCurrentDataSource(Thread.currentThread().getId() + ":" + System.currentTimeMillis());
                     try {
                         Thread.sleep(3000);
                         countDownLatch.countDown();
@@ -111,6 +113,8 @@ public class MyThreadPoolExecutor extends ThreadPoolExecutor {
                         e.printStackTrace();
                     }
                     System.out.println(msg);
+                    //MyThreadContext.removeDataSource();
+                    //System.out.println("after remove : " + msg);
                 }
             });
         }
