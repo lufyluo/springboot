@@ -77,7 +77,6 @@ public class RedisConfiguration {
         }else {
             redisTemplate.setConnectionFactory(connectionFactory);
         }
-        System.out.println("init finish!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         return redisTemplate;
     }
 }

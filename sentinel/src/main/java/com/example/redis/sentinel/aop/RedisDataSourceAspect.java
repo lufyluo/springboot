@@ -45,10 +45,7 @@ public class RedisDataSourceAspect {
             Method method = signature.getMethod();
             RedisSourceRoute redisSourceRoute = method.getAnnotation(RedisSourceRoute.class);
             RedisSourceContext.setCurrentDataSource(redisSourceRoute.route());
-            System.out.println("当前 route： " + RedisSourceContext.getCurrentDataSource());
-            System.out.println("method： begin " + method.getName() + " thread id: " + Thread.currentThread().getId());
             Object result = joinPoint.proceed();
-            System.out.println("method： end " + method.getName() + " thread id: " + Thread.currentThread().getId());
             return result;
         }finally {
             RedisSourceContext.removeDataSource();
